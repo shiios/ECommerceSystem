@@ -19,6 +19,11 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    //设置状态栏的样式
+    application.statusBarStyle = UIStatusBarStyleLightContent;
+    
+    //程序启动完后显示状态栏
+    application.statusBarHidden = NO;
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
     self.window.backgroundColor    = [UIColor whiteColor];
     self.window.rootViewController = [[UINavigationController alloc]initWithRootViewController:[[SWelcomeViewController alloc]init]];

@@ -21,6 +21,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     // Do any additional setup after loading the view, typically from a nib.
+    
     UIScrollView *scrollView = [[UIScrollView alloc] initWithFrame:self.view.bounds];
     [self.view addSubview:scrollView];
     NSArray *imageNames = @[@"welcome1", @"welcome2",@"welcome3",@"welcome4",];
@@ -64,6 +65,10 @@
     //把按钮添加到第四页的中心
     btn.center = CGPointMake((imageNames.count - 0.5) * scrollView.frame.size.width, scrollView.frame.size.height - 100);
     [btn addTarget:self action:@selector(click) forControlEvents:UIControlEventTouchUpInside];
+}
+- (BOOL)prefersStatusBarHidden
+{
+    return YES;
 }
 - (void)click{
     NSLog(@"进入应用");

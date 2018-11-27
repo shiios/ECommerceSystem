@@ -224,7 +224,7 @@
     //把view从宽的样子变圆
     CGPoint centerPoint = self.LoginAnimView.center;
     CGFloat radius = MIN(self.loginBtn.frame.size.width, self.loginBtn.frame.size.height);
-    [UIView animateWithDuration:0.3 delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
+    [UIView animateWithDuration:0.5 delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
         
         self.LoginAnimView.frame = CGRectMake(0, 0, radius, radius);
         self.LoginAnimView.center = centerPoint;
@@ -252,9 +252,11 @@
         baseAnimation.repeatCount = MAXFLOAT;
         [self.LoginAnimView.layer addAnimation:baseAnimation forKey:nil];
         
+        [self loginSuccess];
+        
     }];
     
-    [self loginSuccess];
+    
     
 }
 
