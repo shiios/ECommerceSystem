@@ -29,8 +29,6 @@
 		674B5C3121AD40D6006C63E4 /* SLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 674B5C3021AD40D6006C63E4 /* SLoginViewController.m */; };
 		6775D83221ACE25800373534 /* like.caf in Resources */ = {isa = PBXBuildFile; fileRef = 6775D83121ACE25800373534 /* like.caf */; };
 		67C1A25C21ACD90D00015A15 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 67C1A25B21ACD90D00015A15 /* AppDelegate.m */; };
-		67C1A25F21ACD90D00015A15 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 67C1A25E21ACD90D00015A15 /* ViewController.m */; };
-		67C1A26221ACD90D00015A15 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 67C1A26021ACD90D00015A15 /* Main.storyboard */; };
 		67C1A26421ACD90D00015A15 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 67C1A26321ACD90D00015A15 /* Assets.xcassets */; };
 		67C1A26721ACD90D00015A15 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 67C1A26521ACD90D00015A15 /* LaunchScreen.storyboard */; };
 		67C1A26A21ACD90D00015A15 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 67C1A26921ACD90D00015A15 /* main.m */; };
@@ -105,9 +103,6 @@
 		67C1A25721ACD90D00015A15 /* ECommerceSystem.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ECommerceSystem.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		67C1A25A21ACD90D00015A15 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		67C1A25B21ACD90D00015A15 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		67C1A25D21ACD90D00015A15 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		67C1A25E21ACD90D00015A15 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
-		67C1A26121ACD90D00015A15 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		67C1A26321ACD90D00015A15 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		67C1A26621ACD90D00015A15 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		67C1A26821ACD90D00015A15 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -326,9 +321,6 @@
 				67C1A28C21ACDC1800015A15 /* Classes */,
 				67C1A25A21ACD90D00015A15 /* AppDelegate.h */,
 				67C1A25B21ACD90D00015A15 /* AppDelegate.m */,
-				67C1A25D21ACD90D00015A15 /* ViewController.h */,
-				67C1A25E21ACD90D00015A15 /* ViewController.m */,
-				67C1A26021ACD90D00015A15 /* Main.storyboard */,
 				67C1A26321ACD90D00015A15 /* Assets.xcassets */,
 				67C1A26521ACD90D00015A15 /* LaunchScreen.storyboard */,
 				67C1A26821ACD90D00015A15 /* Info.plist */,
@@ -671,7 +663,6 @@
 				67C1A26721ACD90D00015A15 /* LaunchScreen.storyboard in Resources */,
 				6775D83221ACE25800373534 /* like.caf in Resources */,
 				67C1A26421ACD90D00015A15 /* Assets.xcassets in Resources */,
-				67C1A26221ACD90D00015A15 /* Main.storyboard in Resources */,
 				674B5C1E21AD3ABC006C63E4 /* music.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -699,7 +690,6 @@
 			files = (
 				674B5C1C21AD3ABC006C63E4 /* UIView+BHBAnimation.m in Sources */,
 				674B5C2221AD3CFF006C63E4 /* SWelcomeViewController.m in Sources */,
-				67C1A25F21ACD90D00015A15 /* ViewController.m in Sources */,
 				67C1A2B721ACDEF500015A15 /* SHomeViewController.m in Sources */,
 				67C1A2BA21ACDF0A00015A15 /* SMessageViewController.m in Sources */,
 				674B5C1821AD3ABC006C63E4 /* BHBItem.m in Sources */,
@@ -759,14 +749,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		67C1A26021ACD90D00015A15 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				67C1A26121ACD90D00015A15 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		67C1A26521ACD90D00015A15 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -898,7 +880,7 @@
 				DEVELOPMENT_TEAM = BZY3R8282S;
 				GCC_PREFIX_HEADER = ECommerceSystem/Classes/Config/PrefixHeader.pch;
 				INFOPLIST_FILE = ECommerceSystem/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -917,7 +899,7 @@
 				DEVELOPMENT_TEAM = BZY3R8282S;
 				GCC_PREFIX_HEADER = ECommerceSystem/Classes/Config/PrefixHeader.pch;
 				INFOPLIST_FILE = ECommerceSystem/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

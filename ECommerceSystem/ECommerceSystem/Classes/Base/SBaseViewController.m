@@ -33,11 +33,11 @@
 {
     UIButton *leftButton = [UIButton buttonWithType:UIButtonTypeCustom];
     
-    leftButton.frame = CGRectMake(-10, 0, 50, 50);
+    leftButton.frame = CGRectMake(-10, 0, 50, 40);
     
     [leftButton setImage:[UIImage imageNamed:@"left_back"] forState:UIControlStateNormal];
     [leftButton addTarget:self action:@selector(back_click:) forControlEvents:UIControlEventTouchUpInside];
-    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0.0, 5.0, 50.0, 50.0)];
+    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0.0, 5.0, 50.0, 40.0)];
     [view addSubview:leftButton];
     UIBarButtonItem *leftItem = [[UIBarButtonItem alloc] initWithCustomView:view];
     
