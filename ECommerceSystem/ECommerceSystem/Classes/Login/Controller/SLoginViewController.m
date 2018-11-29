@@ -8,13 +8,21 @@
 
 #import "SLoginViewController.h"
 #import "SCustomeTabBarController.h"
+#import <TencentOpenAPI/TencentOAuth.h>
+#import "WeiboSDK.h"
+#import "AppDelegate.h"
 
-@interface SLoginViewController ()<UITextFieldDelegate>
 
+@interface SLoginViewController ()<UITextFieldDelegate,TencentSessionDelegate,WeiBoDelegate>
+
+{
+    AppDelegate *delgate;
+}
 @property (nonatomic,strong) UIImageView *logoImageView;
 @property (nonatomic,strong) UITextField *userTextField;
 @property (nonatomic,strong) UITextField *pwdTextField;
 @property (nonatomic,strong) UIButton *loginBtn;
+@property (nonatomic,strong) TencentOAuth *tencentOAuth;
 
 
 
@@ -172,18 +180,18 @@
         thirdButton.hidden = NO;
         [thirdButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
         if (i == 0) {
-            [thirdButton setTitle:@"微博" forState:UIControlStateNormal];
+            [thirdButton setImage:[UIImage imageNamed:@"weibo"] forState:UIControlStateNormal];
         }else if (i == 1){
-            [thirdButton setTitle:@"微信" forState:UIControlStateNormal];
+            [thirdButton setImage:[UIImage imageNamed:@"weixin"] forState:UIControlStateNormal];
         }else if (i == 2){
-            [thirdButton setTitle:@"QQ" forState:UIControlStateNormal];
+            [thirdButton setImage:[UIImage imageNamed:@"qq"] forState:UIControlStateNormal];
         }
         
-        thirdButton.backgroundColor = [UIColor clearColor];
-        thirdButton.layer.cornerRadius = 4.0;
-        thirdButton.layer.masksToBounds = YES;
-        thirdButton.layer.borderColor = UIColorWithHex(0xa8a8a8).CGColor;
-        thirdButton.layer.borderWidth = 0.5;
+//        thirdButton.backgroundColor = [UIColor clearColor];
+//        thirdButton.layer.cornerRadius = 4.0;
+//        thirdButton.layer.masksToBounds = YES;
+//        thirdButton.layer.borderColor = UIColorWithHex(0xa8a8a8).CGColor;
+//        thirdButton.layer.borderWidth = 0.5;
         thirdButton.tag = i + 10;
         [thirdButton addTarget:self action:@selector(thirdButtonClick:) forControlEvents:UIControlEventTouchUpInside];
         [self.view addSubview:thirdButton];
@@ -195,13 +203,76 @@
 {
     if (sender.tag == 10) {
         NSLog(@"微博");
+        [SToastObject showToastInView:self.view text:@"微博授权登录被点击"];
+        
+        [self weiboLoginButtonPressed];
+        
+        
     }else if (sender.tag == 11){
         NSLog(@"微信");
+        [SToastObject showToastInView:self.view text:@"微信授权登录被点击"];
     }else if (sender.tag == 12){
         NSLog(@"QQ");
+//        [SToastObject showToastIrnView:self.view text:@"QQ授权登录被点击"];
+        _tencentOAuth = [[TencentOAuth alloc] initWithAppId:@"1108004556" andDelegate:self];
+        _tencentOAuth.authShareType = AuthShareType_QQ;//特别要注意，登录前需要授权，否则会爆出未授权错误（多看文档还是有好处的哈）
+        NSArray *permissions = [NSArray arrayWithObjects:@"get_user_info",@"get_simple_userinfo", @"add_t", nil];
+        [_tencentOAuth authorize:permissions inSafari:NO];
+        
     }
 }
 
+#pragma mark - 微博授权登录
+- (void)weiboLoginButtonPressed
+{
+    NSLog(@"%s",__func__);
+#define kRedirectURI    @"https://me.csdn.net"
+    delgate = (AppDelegate *)[UIApplication sharedApplication].delegate;
+    delgate.weiboDelegate = self;
+
+    WBAuthorizeRequest *request = [WBAuthorizeRequest request];
+    request.redirectURI = kRedirectURI;
+
+    request.scope = @"all";
+    request.userInfo = @{@"SSO_From": @"SendMessageToWeiboViewController",
+                         @"Other_Info_1": [NSNumber numberWithInt:123],
+                         @"Other_Info_2": @[@"obj1", @"obj2"],
+                         @"Other_Info_3": @{@"key1": @"obj1", @"key2": @"obj2"}};
+    [WeiboSDK sendRequest:request];
+}
+
+-(void)weiboLoginByResponse:(WBBaseResponse *)response{
+    NSDictionary *dic = (NSDictionary *) response.requestUserInfo;
+    NSLog(@"userinfo %@",dic);
+    
+}
+- (IBAction)weiboShareAction:(id)sender {
+}
+
+#pragma mark - qq授权登录
+- (void)tencentDidLogin
+{
+    NSLog(@"yes");
+    NSLog(@"%@ -- %@",_tencentOAuth.accessToken, _tencentOAuth.openId);// 打印下accessToken和openId 代表我成功了，存储起来用的时候直接用，或者此处请求服务器接口传给服务器，获取我们项目中用到的userSession
+    //获取用户个人信息
+    [_tencentOAuth getUserInfo];
+    [SToastObject showToastInView:self.view text:@"QQ授权登录登录成功"];
+}
+
+-(void)tencentDidNotLogin:(BOOL)cancelled
+{
+    if (cancelled) {
+        NSLog(@"取消登录");
+    }
+}
+-(void)tencentDidNotNetWork
+{
+    NSLog(@"tencentDidNotNetWork");
+}
+-(void)getUserInfoResponse:(APIResponse *)response
+{
+    NSLog(@"respons:%@",response.jsonResponse);
+}
 #pragma mark - login按钮点击事件——执行动画
 - (void)LoginButtonClick
 {
